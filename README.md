@@ -21,6 +21,12 @@ server.start();
 curl http://localhost:3000/render?url=https://www.example.com/
 ```
 
+## Wemap customization
+
+We made several changes to improve Livemap pre-rendering. Instead of closing the tab after each pre-render, we keep it opened to avoid to reload the livemap script each time. Keeping the tab opened allows us to use the deep-linking to navigate from a content to another.
+
+Also, we implemented a waiting queue for the tabs. When no tab is available, the prerender process will wait. After a prerender task, the tab is released and the next prerender task can start.
+
 ## Use Cases
 The Prerender server can be used in conjunction with [our Prerender.io middleware](#middleware) in order to serve the prerendered HTML of your javascript website to search engines (Google, Bing, etc) and social networks (Facebook, Twitter, etc) for SEO. We run the Prerender server at scale for SEO needs at [https://prerender.io/](https://prerender.io/).
 
